@@ -12,14 +12,14 @@ const A = (f) => path.join(__dirname, "assets", f);
 const OUT = path.join(__dirname, "Vanguard_Investor_Presentation_Norway.pptx");
 
 // ---------- theme ----------
-const INK = "0B1220", PANEL = "111B2E", LINE = "22334F", STEEL = "2F4468";
-const IVORY = "EDE8DC", MUTED = "98A4B8", BRASS = "C2A25D", OLIVE = "6B7A55";
+const INK = "F2F2F2", PANEL = "FFFFFF", LINE = "D3DAE5", STEEL = "9DB0CC", NAVY = "0A2455", WHITE = "FFFFFF";
+const IVORY = "0B1F44", MUTED = "586883", BRASS = "2F5D94", OLIVE = "5B7BA6";
 const HEAD = "Cambria", BODY = "Calibri";
 const THEME = {
-  name: "Vanguard Military",
+  name: "Vanguard Navy and White",
   headFontFace: HEAD,
   bodyFontFace: BODY,
-  colors: { dk1: INK, lt1: IVORY, dk2: PANEL, lt2: MUTED, accent1: BRASS, accent2: STEEL, accent3: OLIVE, accent4: "8C7A4B", accent5: LINE, accent6: "B7BFCC", hlink: BRASS, folHlink: MUTED },
+  colors: { dk1: IVORY, lt1: WHITE, dk2: NAVY, lt2: INK, accent1: BRASS, accent2: NAVY, accent3: OLIVE, accent4: STEEL, accent5: LINE, accent6: MUTED, hlink: BRASS, folHlink: MUTED },
 };
 
 const pres = new pptxgen();
@@ -61,21 +61,21 @@ const body = (s, text, x, y, w, h, opt = {}) =>
   s.addText(text, { x, y, w, h, fontFace: BODY, fontSize: 16, color: IVORY, margin: 0, valign: "top", isTextBox: true, ...opt });
 const label = (s, text, x, y, w) =>
   s.addText(text.toUpperCase(), { x, y, w, h: 0.3, fontFace: BODY, fontSize: 12, bold: true, color: BRASS, charSpacing: 3, margin: 0, isTextBox: true });
-const iconCircle = async (s, Comp, x, y, d = 0.62) => {
-  s.addShape(pres.ShapeType.ellipse, { x, y, w: d, h: d, fill: { color: INK }, line: { color: BRASS, width: 1 }, objectName: "IconRing" });
+const iconCircle = async (s, Comp, x, y, d = 0.62, dark = false) => {
+  s.addShape(pres.ShapeType.ellipse, { x, y, w: d, h: d, fill: { color: dark ? NAVY : PANEL }, line: { color: dark ? WHITE : BRASS, width: 1 }, objectName: "IconRing" });
   const k = d * 0.46;
-  s.addImage({ data: await icon(Comp), x: x + (d - k) / 2, y: y + (d - k) / 2, w: k, h: k, altText: "icon" });
+  s.addImage({ data: await icon(Comp, dark ? "#FFFFFF" : "#" + BRASS), x: x + (d - k) / 2, y: y + (d - k) / 2, w: k, h: k, altText: "icon" });
 };
 function stat(s, x, y, w, h, big, small, bigSize = 34) {
   panel(s, x, y, w, h, "Stat card");
-  s.addText(big, { x: x + 0.2, y: y + 0.12, w: w - 0.4, h: h * 0.52, fontFace: HEAD, fontSize: bigSize, bold: true, color: BRASS, margin: 0, valign: "middle", isTextBox: true });
+  s.addText(big, { x: x + 0.2, y: y + 0.12, w: w - 0.4, h: h * 0.52, fontFace: HEAD, fontSize: bigSize, bold: true, color: NAVY, margin: 0, valign: "middle", isTextBox: true });
   body(s, small, x + 0.2, y + h * 0.62, w - 0.4, h * 0.34, { fontSize: 12, color: MUTED });
 }
 function bullets(s, items, x, y, w, h, opt = {}) {
   s.addText(items.map((t, i) => ({ text: t, options: { bullet: true, breakLine: i < items.length - 1, paraSpaceAfter: 6 } })),
     { x, y, w, h, fontFace: BODY, fontSize: 14, color: IVORY, margin: 0, valign: "top", isTextBox: true, ...opt });
 }
-const th = (t) => ({ text: t, options: { bold: true, color: BRASS, fill: { color: INK }, fontFace: BODY, fontSize: 13 } });
+const th = (t) => ({ text: t, options: { bold: true, color: WHITE, fill: { color: NAVY }, fontFace: BODY, fontSize: 13 } });
 const tc = (t, c = IVORY, o = {}) => ({ text: t, options: { color: c, fill: { color: PANEL }, fontFace: BODY, fontSize: 13, ...o } });
 const tableOpts = { border: { type: "solid", color: LINE, pt: 0.75 }, margin: [0.04, 0.12, 0.04, 0.12], valign: "middle" };
 
@@ -85,7 +85,7 @@ pres.defineSlideMaster({
   title: "CONTENT",
   background: { color: INK },
   objects: [
-    { image: { x: 9.6, y: 3.6, w: 4.4, h: 4.3, path: A("emblem_brass.png"), transparency: 94 } },
+    { image: { x: 9.6, y: 3.6, w: 4.4, h: 4.3, path: A("emblem_navy.png"), transparency: 93 } },
     { rect: { x: M, y: 0.62, w: W - 2 * M, h: 0.01, fill: { color: LINE } } },
     { text: { text: "VANGUARD   ·   TECHNOLOGIES THAT PROTECT", options: { x: M, y: 0.22, w: 7, h: 0.3, fontFace: BODY, fontSize: 10, color: MUTED, charSpacing: 3, margin: 0 } } },
   ],
@@ -93,8 +93,8 @@ pres.defineSlideMaster({
 });
 pres.defineSlideMaster({
   title: "CLOSING",
-  background: { color: INK },
-  objects: [{ image: { x: 8.2, y: -0.6, w: 6.4, h: 6.2, path: A("emblem_brass.png"), transparency: 92 } }],
+  background: { color: NAVY },
+  objects: [{ image: { x: 8.2, y: -0.6, w: 6.4, h: 6.2, path: A("emblem_white.png"), transparency: 93 } }],
 });
 
 (async () => {
@@ -104,13 +104,13 @@ pres.defineSlideMaster({
   // ======= 1. COVER =======
   pres.addSection({ title: "Introduction" });
   let s = pres.addSlide({ masterName: "COVER", sectionTitle: "Introduction" });
-  s.addImage({ path: A("emblem_brass.png"), x: -1.2, y: 2.4, w: 6.6, h: 6.4, transparency: 91, altText: "Vanguard emblem" });
-  s.addImage({ path: A("logo_ivory.png"), x: M, y: 0.7, w: 3.9, h: 3.9 / dims["logo_ivory.png"], altText: "Vanguard — Ukrainian Radioelectronic Systems" });
-  label(s, "Investor presentation   ·   Norway   ·   2026", M, 2.95, 8);
-  s.addText("Technologies that Protect", { x: M, y: 3.35, w: 7.4, h: 1.7, fontFace: HEAD, fontSize: 50, bold: true, color: IVORY, margin: 0, valign: "top", isTextBox: true, objectName: "Title" });
-  body(s, "Integrated protection ecosystem: EW, ER and next-generation counter-UAS. Combat-proven, built on proprietary SDR technologies for NATO-market expansion.", M, 5.4, 6.6, 1.0, { fontSize: 18, color: MUTED });
-  body(s, "URS “Vanguard”   ·   Kyiv, Ukraine", M, 6.65, 6, 0.3, { fontSize: 12, color: MUTED, charSpacing: 2 });
-  fit(s, "kozhan_detail.png", 8.1, 0.55, 4.7, 6.4, "KOZHAN 4.0 drone detector");
+  s.addImage({ path: A("cover_triangles.png"), x: 0, y: 0, w: 7.5 * dims["cover_triangles.png"], h: 7.5, altText: "Vanguard geometric emblem" });
+  const cx0 = 6.6;
+  s.addImage({ path: A("logo_navy.png"), x: cx0, y: 0.75, w: 4.6, h: 4.6 / dims["logo_navy.png"], altText: "Vanguard — Ukrainian Radioelectronic Systems" });
+  label(s, "Investor presentation   ·   Norway   ·   2026", cx0, 3.2, 6);
+  s.addText("Technologies that Protect", { x: cx0, y: 3.6, w: 6.0, h: 1.7, fontFace: HEAD, fontSize: 48, bold: true, color: NAVY, margin: 0, valign: "top", isTextBox: true, objectName: "Title" });
+  body(s, "Integrated protection ecosystem: EW, ER and next-generation counter-UAS. Combat-proven, built on proprietary SDR technologies for NATO-market expansion.", cx0, 5.45, 5.9, 1.0, { fontSize: 16, color: MUTED });
+  body(s, "URS “Vanguard”   ·   Kyiv, Ukraine", cx0, 6.75, 5.9, 0.3, { fontSize: 12, color: MUTED, charSpacing: 2 });
   s.addNotes("Opening. Introduce Vanguard and the purpose of the meeting: present the 2026 product line and discuss partnership with Norwegian investors.");
 
   // ======= MISSION =======
@@ -147,7 +147,7 @@ pres.defineSlideMaster({
   tr.forEach((c, i) => {
     const x = M + i * (sw + sg);
     panel(s, x, 2.3, sw, 4.4, "Stat card");
-    s.addText(c[0], { x: x + 0.3, y: 2.65, w: sw - 0.6, h: 1.3, fontFace: HEAD, fontSize: 66, bold: true, color: BRASS, margin: 0, valign: "middle", isTextBox: true });
+    s.addText(c[0], { x: x + 0.3, y: 2.65, w: sw - 0.6, h: 1.3, fontFace: HEAD, fontSize: 66, bold: true, color: NAVY, margin: 0, valign: "middle", isTextBox: true });
     s.addText(c[1], { x: x + 0.3, y: 4.2, w: sw - 0.6, h: 0.7, fontFace: HEAD, fontSize: 19, bold: true, color: IVORY, margin: 0, valign: "top", isTextBox: true });
     body(s, c[2], x + 0.3, 5.05, sw - 0.6, 1.5, { fontSize: 14, color: MUTED });
   });
@@ -201,7 +201,7 @@ pres.defineSlideMaster({
   stats.forEach((st, i) => {
     const x = M + (i % 2) * 2.95, y = 2.3 + Math.floor(i / 2) * 2.1;
     panel(s, x, y, 2.75, 1.9, "Stat card");
-    s.addText(st[0], { x: x + 0.25, y: y + 0.15, w: 2.3, h: 0.85, fontFace: HEAD, fontSize: 44, bold: true, color: BRASS, margin: 0, isTextBox: true });
+    s.addText(st[0], { x: x + 0.25, y: y + 0.15, w: 2.3, h: 0.85, fontFace: HEAD, fontSize: 44, bold: true, color: NAVY, margin: 0, isTextBox: true });
     body(s, st[1], x + 0.25, y + 1.1, 2.3, 0.7, { fontSize: 14, color: MUTED });
   });
   body(s, "Bands, MHz:  900–1800  ·  2700–4500  ·  4850–6150  ·  6000–8200", M, 6.55, 5.8, 0.35, { fontSize: 12, color: MUTED });
@@ -330,18 +330,18 @@ pres.defineSlideMaster({
   // ======= 11. CONTACT =======
   pres.addSection({ title: "Contact" });
   s = pres.addSlide({ masterName: "CLOSING", sectionTitle: "Contact" });
-  s.addImage({ path: A("logo_ivory.png"), x: M, y: 0.7, w: 3.2, h: 3.2 / dims["logo_ivory.png"], altText: "Vanguard logo" });
-  s.addText("Let’s build the future of defense technology together", { x: M, y: 2.5, w: 7.2, h: 1.6, fontFace: HEAD, fontSize: 40, bold: true, color: IVORY, margin: 0, valign: "top", isTextBox: true, objectName: "Title" });
+  s.addImage({ path: A("logo_white.png"), x: M, y: 0.7, w: 3.2, h: 3.2 / dims["logo_white.png"], altText: "Vanguard logo" });
+  s.addText("Let’s build the future of defense technology together", { x: M, y: 2.5, w: 7.2, h: 1.6, fontFace: HEAD, fontSize: 40, bold: true, color: WHITE, margin: 0, valign: "top", isTextBox: true, objectName: "Title" });
   const ct = [[fa.FaBuilding, "URS “Vanguard” LLC, Kyiv, Ukraine"], [fa.FaPhone, "+38 (093) 968 59 73"], [fa.FaEnvelope, "vanguardltd25@gmail.com"], [fa.FaGlobe, "ursvanguard.com"]];
   for (let i = 0; i < 4; i++) {
     const y = 4.3 + i * 0.66;
-    await iconCircle(s, ct[i][0], M, y, 0.46);
-    s.addText(ct[i][1], { x: M + 0.7, y, w: 6, h: 0.46, fontFace: BODY, fontSize: 18, color: IVORY, margin: 0, valign: "middle", isTextBox: true, hyperlink: i === 3 ? { url: "https://ursvanguard.com" } : undefined });
+    await iconCircle(s, ct[i][0], M, y, 0.46, true);
+    s.addText(ct[i][1], { x: M + 0.7, y, w: 6, h: 0.46, fontFace: BODY, fontSize: 18, color: WHITE, margin: 0, valign: "middle", isTextBox: true, hyperlink: i === 3 ? { url: "https://ursvanguard.com" } : undefined });
   }
-  s.addShape(pres.ShapeType.rect, { x: 8.55, y: 2.1, w: 4.1, h: 4.6, fill: { color: IVORY }, line: { color: BRASS, width: 1.5 }, objectName: "QR card" });
+  s.addShape(pres.ShapeType.rect, { x: 8.55, y: 2.1, w: 4.1, h: 4.6, fill: { color: WHITE }, line: { color: WHITE, width: 1 }, objectName: "QR card" });
   s.addImage({ path: A("qr.png"), x: 8.85, y: 2.4, w: 3.5, h: 3.5, altText: "QR code linking to ursvanguard.com", hyperlink: { url: "https://ursvanguard.com" } });
-  s.addText("SCAN TO VISIT US", { x: 8.55, y: 6.0, w: 4.1, h: 0.3, fontFace: BODY, fontSize: 12, bold: true, color: INK, align: "center", charSpacing: 3, margin: 0, isTextBox: true });
-  s.addText("ursvanguard.com", { x: 8.55, y: 6.3, w: 4.1, h: 0.3, fontFace: BODY, fontSize: 12, color: STEEL, align: "center", margin: 0, isTextBox: true });
+  s.addText("SCAN TO VISIT US", { x: 8.55, y: 6.0, w: 4.1, h: 0.3, fontFace: BODY, fontSize: 12, bold: true, color: NAVY, align: "center", charSpacing: 3, margin: 0, isTextBox: true });
+  s.addText("ursvanguard.com", { x: 8.55, y: 6.3, w: 4.1, h: 0.3, fontFace: BODY, fontSize: 12, color: MUTED, align: "center", margin: 0, isTextBox: true });
   s.addNotes("Closing slide with contacts and the QR code to the company website.");
 
   await pres.writeFile({ fileName: OUT });
