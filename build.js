@@ -179,7 +179,7 @@ pres.defineSlideMaster({
   s = content("KOZHAN 4.0");
   eyebrow(s, "Flagship product  ·  RF reconnaissance device (drone detector)");
   s.addText("KOZHAN 4.0", { x: M, y: 1.12, w: 7.5, h: 1.05, fontFace: HEAD, fontSize: 60, bold: true, color: IVORY, margin: 0, isTextBox: true, objectName: "Title" });
-  body(s, "A multi-band detector that scans the set frequency ranges and picks up the analog video signal of UAVs. Three automatic scan modes, a log of detected signals and fast software updates over Wi-Fi. Interface languages: Ukrainian, English, German and Polish.", M, 2.35, 7.1, 1.5, { fontSize: 15 });
+  body(s, "A multi-band detector that scans the set frequency ranges and picks up the analog video signal of UAVs from 3 km. Three automatic scan modes, a log of detected signals and fast software updates over Wi-Fi. Interface languages: Ukrainian, English, German and Polish.", M, 2.35, 7.1, 1.5, { fontSize: 15 });
   s.addShape(pres.ShapeType.rect, { x: M, y: 3.78, w: 6.2, h: 0.42, fill: { color: INK }, line: { color: BRASS, width: 1 }, objectName: "NATO badge" });
   s.addText("FINAL STAGE OF NATO CODIFICATION  ·  NATO STOCK NUMBER", { x: M, y: 3.78, w: 6.2, h: 0.42, fontFace: BODY, fontSize: 11, bold: true, color: BRASS, charSpacing: 2, align: "center", valign: "middle", margin: 0, isTextBox: true });
   const steps = [[fa.FaBroadcastTower, "Scan", "Automatic monitoring of 4 radio bands in real time"], [fa.FaCrosshairs, "Detect", "Locks onto the analog UAV video signal"], [fa.FaBell, "Alert", "Instant operator notification and log entry"]];
@@ -197,26 +197,29 @@ pres.defineSlideMaster({
   s = content("KOZHAN 4.0");
   eyebrow(s, "KOZHAN 4.0");
   title(s, "Technical characteristics");
-  const stats = [["4", "radio bands\n1G · 3G · 5G · 6G"], ["2 km+", "detection\nrange"], ["12 h", "autonomous\noperation"], ["7 s", "full-scan\ntime"]];
+  const stats = [["4", "radio bands\n1G · 3G · 5G · 6G"], ["3 km+", "detection range,\nfrom 3 km"], ["12 h", "autonomous\noperation"], ["IP54", "protected\ncase"]];
   stats.forEach((st, i) => {
     const x = M + (i % 2) * 2.95, y = 2.3 + Math.floor(i / 2) * 2.1;
     panel(s, x, y, 2.75, 1.9, "Stat card");
     s.addText(st[0], { x: x + 0.25, y: y + 0.15, w: 2.3, h: 0.85, fontFace: HEAD, fontSize: 44, bold: true, color: BRASS, margin: 0, isTextBox: true });
     body(s, st[1], x + 0.25, y + 1.1, 2.3, 0.7, { fontSize: 14, color: MUTED });
   });
-  body(s, "Bands, MHz:  900–1800  ·  2700–4500  ·  4850–6150  ·  6000–8260", M, 6.55, 5.8, 0.35, { fontSize: 12, color: MUTED });
-  const row = (a, b) => [tc(a, MUTED, { fontSize: 14 }), tc(b, IVORY, { fontSize: 14 })];
+  body(s, "Bands, MHz:  900–1800  ·  2700–4500  ·  4850–6150  ·  6000–8200", M, 6.55, 5.8, 0.35, { fontSize: 12, color: MUTED });
+  const row = (a, b) => [tc(a, MUTED, { fontSize: 13 }), tc(b, IVORY, { fontSize: 13 })];
   s.addTable([
     [th("Parameter"), th("Value")],
+    row("Detection range", "from 3 km"),
+    row("Scan time", "up to 7 seconds"),
+    row("Scan modes", "3 automatic, signal log"),
+    row("Display", "IPS 5″ (800 × 480); external via AV"),
+    row("Power", "Built-in battery 75.6 Wh, USB-C charging"),
     row("Weight", "780 g"),
     row("Dimensions", "280×110×45 mm; 155×110×45 mm"),
-    row("Display", "IPS 5″ (800 × 480)"),
-    row("Built-in battery", "75.6 Wh"),
-    row("Ingress protection", "IP-54"),
-    row("External display", "AV output"),
+    row("Ingress protection", "IP54"),
+    row("Software", "Wi-Fi updates; UA, EN, DE, PL"),
     row("EW auto-activation", "MT-30 connector"),
-  ], { x: 6.85, y: 2.3, w: 5.78, colW: [2.4, 3.38], rowH: 0.52, ...tableOpts, objectName: "Specs table" });
-  s.addNotes("Specifications are from the 2026 PDF catalog; re-check against ursvanguard.com (the site was not reachable from the build environment). The catalog gives the upper band edge as 8260 MHz on the overview page and 8200 MHz in the specification table; confirm before sending.");
+  ], { x: 6.85, y: 2.3, w: 5.78, colW: [2.2, 3.58], rowH: 0.41, ...tableOpts, objectName: "Specs table" });
+  s.addNotes("Specifications are taken from the product page on the company website (updated 23.10.2026). The earlier PDF catalog gave 2 km detection range and an upper band edge of 8260 MHz; the website values are used here.");
 
   // ======= KOZHAN KIT =======
   s = content("KOZHAN 4.0");
