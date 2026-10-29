@@ -108,92 +108,87 @@ pres.defineSlideMaster({
   s.addImage({ path: A("logo_ivory.png"), x: M, y: 0.7, w: 3.9, h: 3.9 / dims["logo_ivory.png"], altText: "Vanguard — Ukrainian Radioelectronic Systems" });
   label(s, "Investor presentation   ·   Norway   ·   2026", M, 2.95, 8);
   s.addText("Technologies that Protect", { x: M, y: 3.35, w: 7.4, h: 1.7, fontFace: HEAD, fontSize: 50, bold: true, color: IVORY, margin: 0, valign: "top", isTextBox: true, objectName: "Title" });
-  body(s, "Ukrainian radioelectronic systems: drone detection, thermal surveillance and electronic warfare, developed in Kyiv.", M, 5.4, 6.6, 1.0, { fontSize: 18, color: MUTED });
+  body(s, "Integrated protection ecosystem: EW, ER and next-generation counter-UAS. Combat-proven, built on proprietary SDR technologies for NATO-market expansion.", M, 5.4, 6.6, 1.0, { fontSize: 18, color: MUTED });
   body(s, "URS “Vanguard”   ·   Kyiv, Ukraine", M, 6.65, 6, 0.3, { fontSize: 12, color: MUTED, charSpacing: 2 });
   fit(s, "kozhan_detail.png", 8.1, 0.55, 4.7, 6.4, "KOZHAN 4.0 drone detector");
   s.addNotes("Opening. Introduce Vanguard and the purpose of the meeting: present the 2026 product line and discuss partnership with Norwegian investors.");
 
-  // ======= 2. ABOUT =======
+  // ======= MISSION =======
   pres.addSection({ title: "Company" });
   s = content("Company");
-  eyebrow(s, "About Vanguard");
-  title(s, "Ukrainian engineering, built for the front line");
-  body(s, "URS “Vanguard” is a Kyiv-based developer of radioelectronic systems. Our motto, Technologies that Protect, is a design brief: give operators early warning, clear situational awareness and effective countermeasures where conditions are hardest.", M, 2.3, 5.5, 2.4, { fontSize: 18 });
-  body(s, "Seven products in the 2026 catalog: a drone detector with an active antenna, a thermal camera and four mobile electronic warfare systems.", M, 4.85, 5.5, 1.2, { fontSize: 16, color: MUTED });
-  const pill = [
-    [fa.FaSatelliteDish, "Radioelectronic reconnaissance", "KOZHAN 4.0 multi-band drone detector."],
-    [fa.FaEye, "Video surveillance", "NICH thermal camera for observation in darkness."],
-    [fa.FaShieldAlt, "Electronic warfare", "Delfin, Hydra 2U, Dokatka and Kraken, 300–6000 MHz."],
+  eyebrow(s, "About URS Vanguard");
+  title(s, "Building Europe’s DefenseTech ecosystem");
+  body(s, "Kyiv-based developer of electronic warfare (EW), radioelectronic reconnaissance (ER) and counter-UAS systems on proprietary SDR technologies.", M, 2.2, 11.5, 0.7, { fontSize: 18, color: MUTED });
+  const mv = [
+    [fa.FaBullseye, "Our mission", "Develop real-time technologies that significantly enhance the protection and survival of military personnel and the success of their missions."],
+    [fa.FaChartLine, "Vision, 3–5 years", "Become one of Europe’s key manufacturers of EW, ER and personal protection systems, unified on a single interoperable information-network platform."],
+    [fa.FaGlobeEurope, "Global expansion", "Turn battle-tested front-line experience into certified, standardized solutions for NATO countries and international partners."],
   ];
   for (let i = 0; i < 3; i++) {
-    const y = 2.3 + i * 1.62;
-    panel(s, 6.9, y, 5.73, 1.42, "Card");
-    await iconCircle(s, pill[i][0], 7.2, y + 0.4, 0.62);
-    s.addText(pill[i][1], { x: 8.1, y: y + 0.22, w: 4.4, h: 0.4, fontFace: HEAD, fontSize: 20, bold: true, color: IVORY, margin: 0, isTextBox: true });
-    body(s, pill[i][2], 8.1, y + 0.72, 4.4, 0.6, { fontSize: 14, color: MUTED });
+    const x = M + i * 4.0;
+    panel(s, x, 3.15, 3.93, 3.65, "Mission card");
+    await iconCircle(s, mv[i][0], x + 0.3, 3.45, 0.7);
+    s.addText(mv[i][1], { x: x + 0.3, y: 4.35, w: 3.4, h: 0.45, fontFace: HEAD, fontSize: 22, bold: true, color: IVORY, margin: 0, isTextBox: true });
+    body(s, mv[i][2], x + 0.3, 4.9, 3.35, 1.8, { fontSize: 14, color: MUTED });
   }
-  s.addNotes("Company overview and the three capability areas. Detailed product slides follow.");
+  s.addNotes("Company, mission and vision (from the earlier Vanguard presentation).");
+
+  // ======= TRACTION =======
+  s = content("Company");
+  eyebrow(s, "Traction");
+  title(s, "Proven demand and rapid growth");
+  const tr = [
+    ["3x", "Year-over-year growth", "Consistent tripling of demand each year."],
+    ["300+", "Completed deliveries", "Production capacity booked more than a month ahead."],
+    ["15", "Core team", "In-house specialists covering the full development and production cycle."],
+    ["6–12", "Months of pipeline", "Long-term direct contracts with military units under negotiation."],
+  ];
+  const sw = 2.82, sg = 0.21;
+  tr.forEach((c, i) => {
+    const x = M + i * (sw + sg);
+    panel(s, x, 2.3, sw, 4.4, "Stat card");
+    s.addText(c[0], { x: x + 0.3, y: 2.65, w: sw - 0.6, h: 1.3, fontFace: HEAD, fontSize: 66, bold: true, color: BRASS, margin: 0, valign: "middle", isTextBox: true });
+    s.addText(c[1], { x: x + 0.3, y: 4.2, w: sw - 0.6, h: 0.7, fontFace: HEAD, fontSize: 19, bold: true, color: IVORY, margin: 0, valign: "top", isTextBox: true });
+    body(s, c[2], x + 0.3, 5.05, sw - 0.6, 1.5, { fontSize: 14, color: MUTED });
+  });
+  s.addNotes("Traction figures are taken from the earlier Vanguard presentation; confirm they are current before the meeting.");
 
   // ======= ADVANTAGES =======
   s = content("Company");
   eyebrow(s, "Our advantages");
-  title(s, "Why partner with Vanguard");
+  title(s, "Control, speed and proven results");
   const adv = [
-    [fa.FaShieldAlt, "Born in the field", "Developed in Ukraine, where drone threats are a daily reality."],
-    [fa.FaLayerGroup, "Full cycle from one vendor", "Detection, thermal surveillance and electronic warfare."],
-    [fa.FaFeatherAlt, "Compact and rugged", "KOZHAN 4.0: 780 g, IP54 case, up to 12 hours on battery."],
-    [fa.FaPlug, "Built to integrate", "Auto-start of EW systems, external display, remote antenna."],
-    [fa.FaWifi, "Always up to date", "Software updates over Wi-Fi, three automatic scan modes."],
-    [fa.FaLanguage, "Ready for Europe", "Interface in Ukrainian, English, German and Polish."],
+    [fa.FaMicrochip, "100% proprietary software", "AI-based signal processing, SDR architecture, in-house antenna topology and circuit design."],
+    [fa.FaSatelliteDish, "Widest scanning range", "Maximum frequency coverage for detecting masked and non-standard UAV control channels."],
+    [fa.FaCheckDouble, "Minimized false alarms", "Proprietary digital filtering delivers accurate situational awareness."],
+    [fa.FaProjectDiagram, "Unified ecosystem", "Detection (ER) and suppression (EW) integrated into a single automated network."],
+    [fa.FaIndustry, "Full control of the chain", "R&D, software and production in one company: a high barrier to entry."],
+    [fa.FaBolt, "Faster adaptation", "Rapid update cycle and direct feedback from front-line operators."],
   ];
   for (let i = 0; i < 6; i++) {
     const x = M + (i % 3) * 4.0, y = 2.3 + Math.floor(i / 3) * 2.4;
     panel(s, x, y, 3.93, 2.2, "Benefit card");
-    await iconCircle(s, adv[i][0], x + 0.3, y + 0.3, 0.62);
-    s.addText(adv[i][1], { x: x + 0.3, y: y + 1.1, w: 3.4, h: 0.4, fontFace: HEAD, fontSize: 18, bold: true, color: IVORY, margin: 0, isTextBox: true });
-    body(s, adv[i][2], x + 0.3, y + 1.55, 3.4, 0.6, { fontSize: 13, color: MUTED });
+    await iconCircle(s, adv[i][0], x + 0.3, y + 0.25, 0.62);
+    s.addText(adv[i][1], { x: x + 0.3, y: y + 1.0, w: 3.4, h: 0.4, fontFace: HEAD, fontSize: 17, bold: true, color: IVORY, margin: 0, isTextBox: true });
+    body(s, adv[i][2], x + 0.3, y + 1.45, 3.4, 0.7, { fontSize: 12.5, color: MUTED });
   }
-  s.addNotes("Our advantages. The emphasis of this presentation is the KOZHAN 4.0 detector, covered in the next slides.");
-  // ======= 3. CHALLENGE =======
-  s = content("Company");
-  eyebrow(s, "The challenge");
-  title(s, "Detect first, then neutralise");
-  const pts = [
-    ["01", "Low-cost drones are everywhere", "Small UAVs threaten people, vehicles and positions, often with little warning."],
-    ["02", "Their signal gives them away", "Analog video links leave a radio signature that can be scanned for in real time."],
-    ["03", "Detection triggers the response", "An instant alert, or automatic activation of an EW system, closes the gap."],
-  ];
-  pts.forEach((p, i) => {
-    const y = 2.35 + i * 1.5;
-    s.addText(p[0], { x: M, y, w: 0.9, h: 0.7, fontFace: HEAD, fontSize: 36, bold: true, color: BRASS, margin: 0, isTextBox: true });
-    s.addText(p[1], { x: 1.75, y: y + 0.02, w: 5.3, h: 0.4, fontFace: HEAD, fontSize: 20, bold: true, color: IVORY, margin: 0, isTextBox: true });
-    body(s, p[2], 1.75, y + 0.5, 5.3, 0.8, { fontSize: 14, color: MUTED });
-  });
-  const cx = 10.0, cy = 4.5;
-  [2.35, 1.6, 0.85].forEach((r, i) =>
-    s.addShape(pres.ShapeType.ellipse, { x: cx - r, y: cy - r, w: 2 * r, h: 2 * r, fill: { color: PANEL, transparency: i === 0 ? 40 : 100 }, line: { color: STEEL, width: 1 }, objectName: "Radar ring" }));
-  s.addShape(pres.ShapeType.line, { x: cx - 2.35, y: cy, w: 4.7, h: 0, line: { color: LINE, width: 0.75 } });
-  s.addShape(pres.ShapeType.line, { x: cx, y: cy - 2.35, w: 0, h: 4.7, line: { color: LINE, width: 0.75 } });
-  s.addShape(pres.ShapeType.ellipse, { x: cx - 0.09, y: cy - 0.09, w: 0.18, h: 0.18, fill: { color: BRASS }, line: { color: BRASS, width: 0.5 }, objectName: "Operator" });
-  [[1.3, -1.4], [-1.55, -0.6], [0.7, 1.55]].forEach(([dx, dy]) =>
-    s.addShape(pres.ShapeType.diamond, { x: cx + dx - 0.12, y: cy + dy - 0.12, w: 0.24, h: 0.24, fill: { color: "B5483C" }, line: { color: IVORY, width: 0.75 }, objectName: "Contact" }));
-  s.addText("2 km+", { x: cx + 1.62, y: cy + 0.05, w: 0.72, h: 0.35, fontFace: HEAD, fontSize: 16, bold: true, color: BRASS, margin: 0, isTextBox: true });
-  s.addText("KOZHAN 4.0 detection range (illustrative)", { x: cx - 2.5, y: cy + 2.5, w: 5.0, h: 0.3, fontFace: BODY, fontSize: 11, color: MUTED, align: "center", margin: 0, isTextBox: true });
-  s.addNotes("The problem we solve. The radar graphic is illustrative; KOZHAN 4.0 detects from 2 km.");
+  s.addNotes("Advantages taken from the earlier Vanguard presentation.");
 
   // ======= KOZHAN HERO =======
   pres.addSection({ title: "KOZHAN 4.0" });
   s = content("KOZHAN 4.0");
-  eyebrow(s, "Flagship product  ·  Drone detector");
+  eyebrow(s, "Flagship product  ·  RF reconnaissance device (drone detector)");
   s.addText("KOZHAN 4.0", { x: M, y: 1.12, w: 7.5, h: 1.05, fontFace: HEAD, fontSize: 60, bold: true, color: IVORY, margin: 0, isTextBox: true, objectName: "Title" });
-  body(s, "A multi-band detector that scans the set frequency ranges and picks up the analog video signal of UAVs. Three automatic scan modes, a log of detected signals and fast software updates over Wi-Fi. Interface languages: Ukrainian, English, German and Polish.", M, 2.35, 7.1, 1.8, { fontSize: 16 });
+  body(s, "A multi-band detector that scans the set frequency ranges and picks up the analog video signal of UAVs. Three automatic scan modes, a log of detected signals and fast software updates over Wi-Fi. Interface languages: Ukrainian, English, German and Polish.", M, 2.35, 7.1, 1.5, { fontSize: 15 });
+  s.addShape(pres.ShapeType.rect, { x: M, y: 3.78, w: 6.2, h: 0.42, fill: { color: INK }, line: { color: BRASS, width: 1 }, objectName: "NATO badge" });
+  s.addText("FINAL STAGE OF NATO CODIFICATION  ·  NATO STOCK NUMBER", { x: M, y: 3.78, w: 6.2, h: 0.42, fontFace: BODY, fontSize: 11, bold: true, color: BRASS, charSpacing: 2, align: "center", valign: "middle", margin: 0, isTextBox: true });
   const steps = [[fa.FaBroadcastTower, "Scan", "Automatic monitoring of 4 radio bands in real time"], [fa.FaCrosshairs, "Detect", "Locks onto the analog UAV video signal"], [fa.FaBell, "Alert", "Instant operator notification and log entry"]];
   for (let i = 0; i < 3; i++) {
     const x = M + i * 2.5;
-    panel(s, x, 4.4, 2.35, 2.2, "Step card");
-    await iconCircle(s, steps[i][0], x + 0.25, 4.6, 0.56);
-    s.addText(`0${i + 1}  ${steps[i][1].toUpperCase()}`, { x: x + 0.25, y: 5.28, w: 2.0, h: 0.3, fontFace: BODY, fontSize: 13, bold: true, color: BRASS, charSpacing: 2, margin: 0, isTextBox: true });
-    body(s, steps[i][2], x + 0.25, 5.65, 1.95, 1.0, { fontSize: 13, color: MUTED });
+    panel(s, x, 4.5, 2.35, 2.2, "Step card");
+    await iconCircle(s, steps[i][0], x + 0.25, 4.7, 0.56);
+    s.addText(`0${i + 1}  ${steps[i][1].toUpperCase()}`, { x: x + 0.25, y: 5.38, w: 2.0, h: 0.3, fontFace: BODY, fontSize: 13, bold: true, color: BRASS, charSpacing: 2, margin: 0, isTextBox: true });
+    body(s, steps[i][2], x + 0.25, 5.75, 1.95, 0.9, { fontSize: 13, color: MUTED });
   }
   fit(s, "kozhan_front.png", 8.3, 1.2, 4.35, 5.6, "KOZHAN 4.0 detector with four antennas");
   s.addNotes("KOZHAN 4.0 is the focus of this presentation. How it works: scan, detect, alert.");
@@ -221,7 +216,7 @@ pres.defineSlideMaster({
     row("External display", "AV output"),
     row("EW auto-activation", "MT-30 connector"),
   ], { x: 6.85, y: 2.3, w: 5.78, colW: [2.4, 3.38], rowH: 0.52, ...tableOpts, objectName: "Specs table" });
-  s.addNotes("Specifications from the 2026 catalog. The catalog gives the upper band edge as 8260 MHz on the overview page and 8200 MHz in the specification table; confirm before sending.");
+  s.addNotes("Specifications are from the 2026 PDF catalog; re-check against ursvanguard.com (the site was not reachable from the build environment). The catalog gives the upper band edge as 8260 MHz on the overview page and 8200 MHz in the specification table; confirm before sending.");
 
   // ======= KOZHAN KIT =======
   s = content("KOZHAN 4.0");
@@ -247,39 +242,12 @@ pres.defineSlideMaster({
   body(s, "Magnetic mount, four antenna channels with built-in amplifiers, 3 m RG316 cables. For KOZHAN 4.0 and 3.0.", 10.1, 4.55, 2.4, 2.1, { fontSize: 12.5, color: MUTED });
   s.addNotes("Delivery set, connectors and the optional active remote antenna (powered via MT-30; amplifier gain to be confirmed in the catalog).");
 
-  // ======= SYSTEM =======
-  s = content("KOZHAN 4.0");
-  eyebrow(s, "KOZHAN 4.0 in a system");
-  title(s, "From detection to response");
-  const flow = [
-    [fa.FaBroadcastTower, "DETECT", "KOZHAN 4.0 scans the 1G, 3G, 5G and 6G bands for the UAV video signal."],
-    [fa.FaBell, "ALERT", "The operator is notified instantly and the event is logged."],
-    [fa.FaShieldAlt, "RESPOND", "Optional automatic start of an EW system via the MT-30 connector."],
-    [fa.FaEye, "OBSERVE", "NICH thermal camera extends awareness in darkness."],
-  ];
-  const cw = 2.78, gap = 0.27;
-  for (let i = 0; i < 4; i++) {
-    const x = M + i * (cw + gap);
-    panel(s, x, 2.3, cw, 2.85, "Flow card");
-    await iconCircle(s, flow[i][0], x + 0.3, 2.55, 0.62);
-    s.addText(`0${i + 1}`, { x: x + cw - 0.9, y: 2.55, w: 0.6, h: 0.5, fontFace: HEAD, fontSize: 24, bold: true, color: STEEL, align: "right", margin: 0, isTextBox: true });
-    s.addText(flow[i][1], { x: x + 0.3, y: 3.4, w: cw - 0.6, h: 0.4, fontFace: HEAD, fontSize: 21, bold: true, color: IVORY, margin: 0, isTextBox: true });
-    body(s, flow[i][2], x + 0.3, 3.9, cw - 0.6, 1.2, { fontSize: 13, color: MUTED });
-    if (i < 3) s.addImage({ data: await icon(fa.FaChevronRight, "#" + BRASS), x: x + cw + 0.04, y: 3.65, w: 0.19, h: 0.19, altText: "next" });
-  }
-  panel(s, M, 5.4, W - 2 * M, 1.45, "Platforms panel");
-  label(s, "EW platforms compatible with KOZHAN", M + 0.3, 5.52, 6);
-  [["delfin_box.png", "Delfin"], ["hydra_kit.png", "Hydra 2U"], ["dokatka.png", "Dokatka"], ["kraken_full.png", "Kraken"]].forEach((p, i) => {
-    const x = M + 0.3 + i * 2.95;
-    fit(s, p[0], x, 5.88, 1.45, 0.85, p[1]);
-    s.addText(p[1], { x: x + 1.55, y: 6.1, w: 1.3, h: 0.4, fontFace: HEAD, fontSize: 15, bold: true, color: IVORY, margin: 0, valign: "middle", isTextBox: true });
-  });
-  s.addNotes("Each layer works on its own and is stronger together. Delfin, Hydra 2U, Dokatka and Kraken all support connection to the KOZHAN detector.");
   // ======= 4. PORTFOLIO =======
-  pres.addSection({ title: "Products" });
-  s = content("Products");
+  pres.addSection({ title: "Portfolio" });
+  s = content("Portfolio");
   eyebrow(s, "Product portfolio");
-  title(s, "One catalog: detect, observe, suppress");
+  title(s, "One ecosystem: detect, observe, suppress");
+  body(s, "Delfin and Kraken are in serial production and used in real operations; EW platforms can be started automatically by KOZHAN.", M, 1.78, 11.5, 0.35, { fontSize: 13, color: MUTED });
   label(s, "Detection and surveillance", M, 2.15, 6);
   const top = [
     ["kozhan_front.png", "KOZHAN 4.0", "Multi-band drone detector, 4 bands"],
@@ -312,30 +280,55 @@ pres.defineSlideMaster({
   });
   s.addNotes("Seven products in three groups. All EW platforms can be switched on automatically by the KOZHAN detector.");
 
-  // ======= EW FAMILY =======
-  pres.addSection({ title: "Portfolio" });
-  s = content("Portfolio");
-  eyebrow(s, "Complementary systems");
-  title(s, "Electronic warfare family and thermal vision");
-  s.addTable([
-    [th("Platform"), th("Built for"), th("Bands / range"), th("Power"), th("Weight")],
-    [tc("Delfin", IVORY, { bold: true }), tc("Concealed on a civilian car"), tc("up to 13 bands, 300–6000 MHz"), tc("50–100 W per module"), tc("60–80 kg")],
-    [tc("Hydra 2U", IVORY, { bold: true }), tc("Heavy vehicles, APCs, command vehicles"), tc("8–20 bands, 300–6000 MHz"), tc("50 W per band"), tc("60–80 kg")],
-    [tc("Dokatka", IVORY, { bold: true }), tc("Concealed on trucks and mobile positions"), tc("up to 12 bands, 300–6000 MHz"), tc("50–100 W per band"), tc("30–40 kg")],
-    [tc("Kraken", IVORY, { bold: true }), tc("Directional suppression in a sector"), tc("300–4100 MHz"), tc("25–50 W per 100 MHz"), tc("25–30 kg")],
-  ], { x: M, y: 2.2, w: W - 2 * M, colW: [1.7, 3.5, 3.0, 2.4, 1.33], rowH: 0.5, ...tableOpts, objectName: "EW comparison" });
-  panel(s, M, 4.95, W - 2 * M, 1.9, "NICH panel");
-  fit(s, "thermal.png", M + 0.25, 5.1, 3.1, 1.6, "NICH thermal camera with display unit");
-  label(s, "NICH  ·  Thermal camera", 4.7, 5.12, 5);
-  body(s, "Pan-controlled thermal camera with an uncooled VOx sensor (256 × 192 px, 50 Hz, 50° × 37.2° field of view) and a 5″ display. Cable 5–50 m, supply 9–24 V.", 4.7, 5.5, 4.4, 1.3, { fontSize: 13, color: MUTED });
-  s.addImage({ path: A("thermal_view.png"), x: 9.35, y: 5.1, w: 1.6 * dims["thermal_view.png"] * 1.0, h: 1.6, altText: "Thermal image: a person detected in darkness" });
-  s.addNotes("The EW platforms can be switched on automatically by the KOZHAN detector; NICH provides thermal observation at night. Partnership topics for discussion: distribution, localisation and joint development with Norwegian partners.");
+  // ======= SCALE =======
+  pres.addSection({ title: "Readiness" });
+  s = content("Readiness");
+  eyebrow(s, "Scale and readiness");
+  title(s, "Field-validated, ready to scale");
+  const cap = [["80%", "vertical integration"], ["500", "detectors per month, up to"], ["50", "EW systems per month, up to"], ["Days", "for firmware and hardware updates"]];
+  cap.forEach((c, i) => stat(s, M + i * 3.0, 2.2, 2.85, 1.55, c[0], c[1], 38));
+  const rd = [
+    [fa.FaCertificate, "TRL 9 readiness", "Products passed full verification in real combat conditions, with hundreds of positive feedback reports from military units."],
+    [fa.FaFlagUsa, "International forums", "Participation in, and official invitations to, defense events in the USA, Lithuania, Norway, Italy and others."],
+    [fa.FaHandshake, "Partnerships and certification", "Preliminary cooperation agreements reached; codification, patenting and international certification under way."],
+  ];
+  for (let i = 0; i < 3; i++) {
+    const x = M + i * 4.0;
+    panel(s, x, 4.05, 3.93, 2.75, "Readiness card");
+    await iconCircle(s, rd[i][0], x + 0.3, 4.3, 0.62);
+    s.addText(rd[i][1], { x: x + 1.1, y: 4.3, w: 2.7, h: 0.62, fontFace: HEAD, fontSize: 17, bold: true, color: IVORY, margin: 0, valign: "middle", isTextBox: true });
+    body(s, rd[i][2], x + 0.3, 5.15, 3.35, 1.6, { fontSize: 13, color: MUTED });
+  }
+  s.addNotes("Capacity, TRL and international engagement figures are taken from the earlier Vanguard presentation; confirm they are current.");
+
+  // ======= ROADMAP =======
+  s = content("Readiness");
+  eyebrow(s, "Roadmap");
+  title(s, "Our path to the NATO market");
+  const rm = [
+    ["Export and certification", "Complete codification, obtain export permits and international certificates."],
+    ["European hub", "Establish an official presence and legal entity in Poland or Italy."],
+    ["Partner network", "Build distribution and joint ventures with Western defense contractors."],
+    ["Serial supply", "Scale production to meet direct defense contracts with partners."],
+  ];
+  s.addShape(pres.ShapeType.line, { x: M + 0.35, y: 2.75, w: 3 * 3.0 + 0.0, h: 0, line: { color: STEEL, width: 1.5 } });
+  rm.forEach((r, i) => {
+    const x = M + i * 3.0;
+    s.addShape(pres.ShapeType.ellipse, { x, y: 2.4, w: 0.7, h: 0.7, fill: { color: INK }, line: { color: BRASS, width: 1.5 }, objectName: "Step marker" });
+    s.addText(String(i + 1), { x, y: 2.4, w: 0.7, h: 0.7, fontFace: HEAD, fontSize: 22, bold: true, color: BRASS, align: "center", valign: "middle", margin: 0, isTextBox: true });
+    s.addText(r[0], { x, y: 3.35, w: 2.75, h: 0.75, fontFace: HEAD, fontSize: 19, bold: true, color: IVORY, margin: 0, valign: "top", isTextBox: true });
+    body(s, r[1], x, 4.15, 2.65, 1.1, { fontSize: 13, color: MUTED });
+  });
+  panel(s, M, 5.45, W - 2 * M, 1.4, "Market panel");
+  label(s, "Why now", M + 0.3, 5.58, 3);
+  body(s, "Demand for counter-drone systems is rising sharply as European armed forces re-arm. Western buyers want solutions validated in real conditions against a technologically advanced adversary, with better price and speed than bulky alternatives.", M + 0.3, 5.93, 11.3, 0.85, { fontSize: 14 });
+  s.addNotes("Roadmap and market drivers are taken from the earlier Vanguard presentation.");
 
   // ======= 11. CONTACT =======
   pres.addSection({ title: "Contact" });
   s = pres.addSlide({ masterName: "CLOSING", sectionTitle: "Contact" });
   s.addImage({ path: A("logo_ivory.png"), x: M, y: 0.7, w: 3.2, h: 3.2 / dims["logo_ivory.png"], altText: "Vanguard logo" });
-  s.addText("Let’s build protection together", { x: M, y: 2.5, w: 7.2, h: 1.6, fontFace: HEAD, fontSize: 44, bold: true, color: IVORY, margin: 0, valign: "top", isTextBox: true, objectName: "Title" });
+  s.addText("Let’s build the future of defense technology together", { x: M, y: 2.5, w: 7.2, h: 1.6, fontFace: HEAD, fontSize: 40, bold: true, color: IVORY, margin: 0, valign: "top", isTextBox: true, objectName: "Title" });
   const ct = [[fa.FaBuilding, "URS “Vanguard” LLC, Kyiv, Ukraine"], [fa.FaPhone, "+38 (093) 968 59 73"], [fa.FaEnvelope, "vanguardltd25@gmail.com"], [fa.FaGlobe, "ursvanguard.com"]];
   for (let i = 0; i < 4; i++) {
     const y = 4.3 + i * 0.66;
